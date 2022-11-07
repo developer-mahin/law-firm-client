@@ -1,15 +1,12 @@
+import { RouterProvider } from 'react-router-dom';
 import './App.css';
-import { Button, Spinner } from 'flowbite-react';
+import router from './routes/router';
+
 
 function App() {
   return (
     <div className="App">
-      <Button>
-        <Spinner aria-label="Spinner button example" />
-        <span className="pl-3">
-          Loading...
-        </span>
-      </Button>
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }
