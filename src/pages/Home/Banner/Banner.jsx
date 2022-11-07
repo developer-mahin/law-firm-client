@@ -55,7 +55,7 @@ const Banner = () => {
                   <div className="mb-1 sm:mb-2">
                     <label
                       htmlFor="firstName"
-                      className="inline-block mb-1 font-medium"
+                      className="inline-block mb-1 font-medium text-white"
                     >
                       First name
                     </label>
@@ -63,7 +63,7 @@ const Banner = () => {
                       placeholder="John"
                       required
                       type="text"
-                      className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                      className="flex-grow w-full px-6 py-2 mb-2 transition duration-200 bg-white border border-gray-300 rounded-full shadow-sm appearance-none focus:border-purple-400 focus:outline-none focus:shadow-outline"
                       id="firstName"
                       name="firstName"
                     />
@@ -71,7 +71,7 @@ const Banner = () => {
                   <div className="mb-1 sm:mb-2">
                     <label
                       htmlFor="lastName"
-                      className="inline-block mb-1 font-medium"
+                      className="inline-block mb-1 font-medium text-white"
                     >
                       Last name
                     </label>
@@ -79,7 +79,7 @@ const Banner = () => {
                       placeholder="Doe"
                       required
                       type="text"
-                      className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                      className="flex-grow w-full px-6 py-2 mb-2 transition duration-200 bg-white border border-gray-300 rounded-full shadow-sm appearance-none focus:border-purple-400 focus:outline-none focus:shadow-outline"
                       id="lastName"
                       name="lastName"
                     />
@@ -87,7 +87,7 @@ const Banner = () => {
                   <div className="mb-1 sm:mb-2">
                     <label
                       htmlFor="email"
-                      className="inline-block mb-1 font-medium"
+                      className="inline-block mb-1 font-medium text-white"
                     >
                       E-mail
                     </label>
@@ -95,7 +95,7 @@ const Banner = () => {
                       placeholder="john.doe@example.org"
                       required
                       type="text"
-                      className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                      className="flex-grow w-full px-6 py-2 mb-2 transition duration-200 bg-white border border-gray-300 rounded-full shadow-sm appearance-none focus:border-purple-400 focus:outline-none focus:shadow-outline"
                       id="email"
                       name="email"
                     />
