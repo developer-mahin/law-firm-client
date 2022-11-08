@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/logo.png"
+import logo from "../../../assets/logo.png";
 
 const Footer = () => {
   return (
@@ -11,10 +11,10 @@ const Footer = () => {
             to="/"
             aria-label="Company"
             title="Company"
-            class="inline-flex items-center"
+            className="inline-flex items-center"
           >
             <img src={logo} className="w-16 " alt="" />
-            <span class="ml-2 text-xl font-bold tracking-wide text-gray-200 capitalize">
+            <span className="ml-2 text-xl font-bold tracking-wide text-gray-200 capitalize">
               Mahin Khan
               <br />
               <small className="text-sm font-semibold font-mono">

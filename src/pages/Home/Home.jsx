@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Services from "../Shared/Services/Services";
 import About from "./AboutUs/About";
 import Banner from "./Banner/Banner";
-import Services from "./Services/Services";
 import Slider from "./Slider/Slider";
 
 const Home = () => {
