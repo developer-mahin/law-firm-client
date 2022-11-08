@@ -5,6 +5,8 @@ import logo from "../../../assets/logo.png";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const user = "";
+
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 border-b-2">
       <div className="relative flex items-center justify-between">
@@ -65,16 +67,52 @@ const Header = () => {
             </Link>
           </li>
         </ul>
-        <ul className="flex items-center hidden space-x-8 lg:flex">
+        <ul className="flex items-center hidden space-x-2 lg:flex">
+          {user?.uid ? (
+            <>
+            <li>
+                <button
+                  className="inline-flex items-center justify-center py-2 px-8 font-medium tracking-wide transition duration-200 shadow-md bg-cyan-400 hover:bg-cyan-500 focus:shadow-outline focus:outline-none rounded-full"
+                >
+                  Log Out
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link
+                  to="/login"
+                  className="inline-flex items-center justify-center py-2 px-8 font-medium tracking-wide transition duration-200 shadow-md bg-cyan-400 hover:bg-cyan-500 focus:shadow-outline focus:outline-none rounded-full"
+                >
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/register"
+                  className="inline-flex items-center justify-center py-2 px-8 font-medium tracking-wide transition duration-200 shadow-md bg-cyan-400 hover:bg-cyan-500 focus:shadow-outline focus:outline-none rounded-full"
+                >
+                  Register
+                </Link>
+              </li>
+            </>
+          )}
           <li>
-            <Link
-              to="/"
-              className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide  transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-              aria-label="Sign up"
-              title="Sign up"
-            >
-              Sign up
-            </Link>
+            {user?.uid ? (
+              <>
+                <img src={user?.photoURL} alt="" />
+              </>
+            ) : (
+              <>
+                {" "}
+                <img
+                  src="https://png.pngtree.com/png-vector/20220817/ourmid/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png"
+                  alt=""
+                  className="w-12 h-12 rounded-full"
+                />{" "}
+              </>
+            )}
           </li>
         </ul>
         <div className="lg:hidden">
@@ -188,9 +226,7 @@ const Header = () => {
                         Sign up
                       </Link>
                     </li>
-                    <li>
-
-                    </li>
+                    <li></li>
                   </ul>
                 </nav>
               </div>
