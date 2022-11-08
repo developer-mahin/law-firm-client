@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Register = () => {
+  const { signInWithGoogle } = useContext(AuthContext);
+
+  const googleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        toast.success("successfully sign in");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.message);
+      });
+  };
+
   return (
     <section className="px-4 py-9 mx-auto max-w-7xl">
       <div className="w-full mx-auto space-y-5 sm:w-8/12 md:w-6/12 lg:w-1/3 border shadow rounded px-4 py-9">
@@ -10,7 +26,10 @@ const Register = () => {
           Create Account
         </h1>
         <div className="pb-6 space-y-2 border-b border-gray-200">
-          <button className="w-full bg-cyan-400 hover:bg-cyan-500 rounded-full px-6 flex justify-center items-center py-3 font-semibold">
+          <button
+            onClick={googleSignIn}
+            className="w-full bg-cyan-400 hover:bg-cyan-500 rounded-full px-6 flex justify-center items-center py-3 font-semibold"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -29,7 +48,7 @@ const Register = () => {
           </button>
         </div>
         <form className="space-y-4">
-        <label className="block">
+          <label className="block">
             <span className="block mb-1 font-medium text-gray-700">
               Your Name
             </span>
@@ -89,7 +108,7 @@ const Register = () => {
             Already have an account?{" "}
             <Link
               className="text-sm text-gray-700 underline hover:text-purple-700 "
-              to="/register"
+              to="/login"
             >
               Login
             </Link>
