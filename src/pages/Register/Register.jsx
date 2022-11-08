@@ -5,13 +5,40 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthProvider";
 
 const Register = () => {
-  const { signInWithGoogle } = useContext(AuthContext);
+  const { signInWithGoogle, createUser, updateProfileWithNameAndPhoto } =
+    useContext(AuthContext);
+
+  const handlerCreateUser = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+
+        updateProfileWithNameAndPhoto(name, photoURL)
+          .then(() => {
+            toast.success("Successfully registered");
+            form.reset();
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          });
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   const googleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
-        toast.success("successfully sign in");
+        toast.success("Successfully Login");
       })
       .catch((error) => {
         console.error(error);
@@ -47,7 +74,7 @@ const Register = () => {
             Continue with Facebook
           </button>
         </div>
-        <form className="space-y-4">
+        <form onSubmit={handlerCreateUser} className="space-y-4">
           <label className="block">
             <span className="block mb-1 font-medium text-gray-700">
               Your Name
@@ -100,7 +127,7 @@ const Register = () => {
           <input
             type="submit"
             className="w-full py-3 px-6 btn bg-cyan-400 hover:bg-cyan-500 rounded-full cursor-pointer font-semibold"
-            value="Login"
+            value="Register"
           />
         </form>
         <div className="my-2 text-center">

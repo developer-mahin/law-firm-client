@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const user = "";
 
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 border-b-2">
@@ -70,10 +70,8 @@ const Header = () => {
         <ul className="flex items-center hidden space-x-2 lg:flex">
           {user?.uid ? (
             <>
-            <li>
-                <button
-                  className="inline-flex items-center justify-center py-2 px-8 font-medium tracking-wide transition duration-200 shadow-md bg-cyan-400 hover:bg-cyan-500 focus:shadow-outline focus:outline-none rounded-full"
-                >
+              <li>
+                <button className="inline-flex items-center justify-center py-2 px-8 font-medium tracking-wide transition duration-200 shadow-md bg-cyan-400 hover:bg-cyan-500 focus:shadow-outline focus:outline-none rounded-full">
                   Log Out
                 </button>
               </li>
@@ -101,7 +99,11 @@ const Header = () => {
           <li>
             {user?.uid ? (
               <>
-                <img src={user?.photoURL} alt="" />
+                <img
+                  src={user?.photoURL}
+                  className="w-12 h-12 rounded-full"
+                  alt=""
+                />
               </>
             ) : (
               <>
