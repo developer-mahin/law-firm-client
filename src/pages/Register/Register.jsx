@@ -8,6 +8,7 @@ const Register = () => {
   const { signInWithGoogle, createUser, updateProfileWithNameAndPhoto } =
     useContext(AuthContext);
 
+  // create user with email and password
   const handlerCreateUser = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -34,6 +35,7 @@ const Register = () => {
       });
   };
 
+  //   google login
   const googleSignIn = () => {
     signInWithGoogle()
       .then((result) => {

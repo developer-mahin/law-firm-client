@@ -2,10 +2,21 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { AuthContext } from "../../../context/AuthProvider";
+import toast from "react-hot-toast";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOutUser } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleLogOut = () => {
+    logOutUser()
+      .then(() => {
+        toast.success("Log Out successfully");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 border-b-2">
@@ -48,22 +59,32 @@ const Header = () => {
           </li>
           <li>
             <Link
-              to="/"
+              to="/my_review"
               aria-label="Product pricing"
               title="Product pricing"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Pricing
+              My Review
             </Link>
           </li>
           <li>
             <Link
-              to="/"
+              to="/add_services"
               aria-label="About us"
               title="About us"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              About us
+              Add Services
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/blog"
+              aria-label="About us"
+              title="About us"
+              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+            >
+              Blog
             </Link>
           </li>
         </ul>
@@ -71,7 +92,10 @@ const Header = () => {
           {user?.uid ? (
             <>
               <li>
-                <button className="inline-flex items-center justify-center py-2 px-8 font-medium tracking-wide transition duration-200 shadow-md bg-cyan-400 hover:bg-cyan-500 focus:shadow-outline focus:outline-none rounded-full">
+                <button
+                  onClick={handleLogOut}
+                  className="inline-flex items-center justify-center py-2 px-8 font-medium tracking-wide transition duration-200 shadow-md bg-cyan-400 hover:bg-cyan-500 focus:shadow-outline focus:outline-none rounded-full"
+                >
                   Log Out
                 </button>
               </li>
@@ -180,55 +204,108 @@ const Header = () => {
                   <ul className="space-y-4">
                     <li>
                       <Link
-                        to="/"
+                        to="/home"
                         aria-label="Our product"
                         title="Our product"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        Product
+                        Home
                       </Link>
                     </li>
                     <li>
                       <Link
-                        to="/"
+                        to="/services"
                         aria-label="Our product"
                         title="Our product"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        Features
+                        Services
                       </Link>
                     </li>
                     <li>
                       <Link
-                        to="/"
+                        to="/my_review"
                         aria-label="Product pricing"
                         title="Product pricing"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        Pricing
+                        My Review
                       </Link>
                     </li>
                     <li>
                       <Link
-                        to="/"
+                        to="/add_services"
                         aria-label="About us"
                         title="About us"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        About us
+                        Add Services
                       </Link>
                     </li>
                     <li>
                       <Link
-                        to="/"
-                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-black transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                        aria-label="Sign up"
-                        title="Sign up"
+                        to="/blog"
+                        aria-label="About us"
+                        title="About us"
+                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        Sign up
+                        Blog
                       </Link>
                     </li>
-                    <li></li>
+
+                    <div className="flex justify-between items-center">
+                      {user?.uid ? (
+                        <>
+                          <li>
+                            <button
+                              onClick={handleLogOut}
+                              className="inline-flex items-center justify-center py-2 px-8 font-medium tracking-wide transition duration-200 shadow-md bg-cyan-400 hover:bg-cyan-500 focus:shadow-outline focus:outline-none rounded-full"
+                            >
+                              Log Out
+                            </button>
+                          </li>
+                        </>
+                      ) : (
+                        <>
+                          <li>
+                            <Link
+                              to="/login"
+                              className="inline-flex items-center justify-center py-2 px-8 font-medium tracking-wide transition duration-200 shadow-md bg-cyan-400 hover:bg-cyan-500 focus:shadow-outline focus:outline-none rounded-full"
+                            >
+                              Login
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/register"
+                              className="inline-flex items-center justify-center py-2 px-8 font-medium tracking-wide transition duration-200 shadow-md bg-cyan-400 hover:bg-cyan-500 focus:shadow-outline focus:outline-none rounded-full"
+                            >
+                              Register
+                            </Link>
+                          </li>
+                        </>
+                      )}
+                      <li>
+                        {user?.uid ? (
+                          <>
+                            <img
+                              src={user?.photoURL}
+                              className="w-12 h-12 rounded-full"
+                              alt=""
+                            />
+                          </>
+                        ) : (
+                          <>
+                            {" "}
+                            <img
+                              src="https://png.pngtree.com/png-vector/20220817/ourmid/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png"
+                              alt=""
+                              className="w-12 h-12 rounded-full"
+                            />{" "}
+                          </>
+                        )}
+                      </li>
+                    </div>
                   </ul>
                 </nav>
               </div>
