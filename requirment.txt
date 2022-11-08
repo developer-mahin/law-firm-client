@@ -16,7 +16,7 @@ However, your website **cannot** be related to your **previous assignments** or 
 1. The homepage will have a Navbar, a slider/banner/ a meaningful section. Under the navbar, display a list of services. There will be at least 6 services in the database, but here, you will `limit` the number to only 3 i.e. on the home page, you will show maximum of 3 services (this should be done in the backend). Also,  add a meaningful footer.✅
 
 
-2. There will be a " **see all**" button/icon under the 3 services. When clicking the button/icon, take the user to the _/services_ route and show all the services on that page.
+2. There will be a " **see all**" button/icon under the 3 services. When clicking the button/icon, take the user to the _/services_ route and show all the services on that page. ✅
 
 
 3. Add two extra sections on the home page. Make sure it is unique and relevant to your website.
