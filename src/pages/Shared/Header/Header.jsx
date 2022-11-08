@@ -58,25 +58,39 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link
-              to="/my_review"
-              aria-label="Product pricing"
-              title="Product pricing"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              My Review
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/add_services"
-              aria-label="About us"
-              title="About us"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              Add Services
-            </Link>
-          </li>
+                <Link
+                  to="/my_review"
+                  aria-label="Product pricing"
+                  title="Product pricing"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  My Review
+                </Link>
+              </li>
+          {user?.uid && (
+            <>
+              {/* <li>
+                <Link
+                  to="/my_review"
+                  aria-label="Product pricing"
+                  title="Product pricing"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  My Review
+                </Link>
+              </li> */}
+              <li>
+                <Link
+                  to="/add_services"
+                  aria-label="About us"
+                  title="About us"
+                  className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                >
+                  Add Services
+                </Link>
+              </li>
+            </>
+          )}
           <li>
             <Link
               to="/blog"
@@ -222,26 +236,30 @@ const Header = () => {
                         Services
                       </Link>
                     </li>
-                    <li>
-                      <Link
-                        to="/my_review"
-                        aria-label="Product pricing"
-                        title="Product pricing"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        My Review
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/add_services"
-                        aria-label="About us"
-                        title="About us"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                      >
-                        Add Services
-                      </Link>
-                    </li>
+                    {user?.uid && (
+                      <>
+                        <li>
+                          <Link
+                            to="/my_review"
+                            aria-label="Product pricing"
+                            title="Product pricing"
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          >
+                            My Review
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to="/add_services"
+                            aria-label="About us"
+                            title="About us"
+                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                          >
+                            Add Services
+                          </Link>
+                        </li>
+                      </>
+                    )}
                     <li>
                       <Link
                         to="/blog"

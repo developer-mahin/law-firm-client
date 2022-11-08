@@ -22,7 +22,7 @@ const Home = () => {
       {/* <Slider></Slider> */}
       <Banner></Banner>
       <About></About>
-      <div className="container mx-auto lg:py-16 py-3">
+      <div className="container mx-auto py-16">
         <div className="text-center">
           <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-400">
             SERVICES

@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
-import { FaStar, FaStarHalf} from "react-icons/fa";
+import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 const Services = ({ service }) => {
   const { picture, title, description, _id, price, rating } = service;
 
   return (
     <div className="mt-8 px-2 md:px-0">
-      <div className="duration-300 transform bg-white border shadow-sm hover:-translate-y-2 rounded-lg pb-4 h-[450px]">
+      <div className="duration-300 transform bg-white border shadow-sm hover:-translate-y-2 rounded-lg pb-4 h-[470px]">
         <div className="flex items-center justify-center h-56 mb-4">
           <PhotoProvider>
             <PhotoView src={picture}>
@@ -26,7 +26,7 @@ const Services = ({ service }) => {
             {description && <>{description.slice(0, 100) + "..."} </>}
           </p>
           <div className="flex justify-between items-center mt-2">
-            <p className="font-bold mb-4">
+            <p className="font-bold">
               <span className="text-cyan-600 text-xl">${price}</span>{" "}
             </p>
             <div>
@@ -35,17 +35,19 @@ const Services = ({ service }) => {
                 <FaStar className="text-yellow-300"></FaStar>
                 <FaStar className="text-yellow-300"></FaStar>
                 <FaStar className="text-yellow-300"></FaStar>
-                <FaStarHalf className="text-yellow-300"></FaStarHalf>
-                <span className="font-semibold">{rating}</span>
+                <FaStarHalfAlt className="text-yellow-300"></FaStarHalfAlt>
+                <span className="font-semibold ml-1">{rating}</span>
               </div>
             </div>
           </div>
-          <Link
-            to={`/services/${_id}`}
-            className=" hover:underline bg-cyan-400 hover:bg-cyan-500 px-8 py-2 rounded-full text-black"
-          >
-            Read More
-          </Link> 
+          <div className="mt-5">
+            <Link
+              to={`/services/${_id}`}
+              className=" hover:underline bg-cyan-400 hover:bg-cyan-500 px-8 py-3 rounded-full text-black"
+            >
+              Read More
+            </Link>
+          </div>
         </div>
       </div>
     </div>
