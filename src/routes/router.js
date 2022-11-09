@@ -5,10 +5,11 @@ import Blog from "../pages/Blog/Blog";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
-import MyReview from "../pages/MyReview/MyReview";
+import MyReviewPage from "../pages/MyReview/MyReviewPage";
 import Register from "../pages/Register/Register";
+import Reviews from "../pages/Reviews/Reviews";
+import ServiceDetails from "../pages/ServicesPage/ServiceDetails/ServiceDetails";
 import ServicesPage from "../pages/ServicesPage/ServicesPage";
-import ServiceDetails from "../pages/Shared/ServiceDetails/ServiceDetails";
 import PrivateRouter from "./PrivateRouter/PrivateRouter";
 
 const router = createBrowserRouter([
@@ -49,11 +50,18 @@ const router = createBrowserRouter([
             },
             {
                 path: "/my_review",
-                element: <PrivateRouter> <MyReview></MyReview> </PrivateRouter>
+                element: <PrivateRouter> <MyReviewPage></MyReviewPage> </PrivateRouter>
             },
             {
                 path: '/add_services',
                 element: <PrivateRouter><AddService></AddService></PrivateRouter>
+            },
+            {
+                path:'/reviews/:id',
+                loader: ({ params }) => {
+                    return fetch(`http://localhost:5000/allServices/${params.id}`)
+                },
+                element: <PrivateRouter><Reviews></Reviews></PrivateRouter>
             },
             {
                 path: "/blog",

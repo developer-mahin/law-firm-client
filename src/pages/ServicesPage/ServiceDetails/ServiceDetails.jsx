@@ -4,13 +4,13 @@ import toast from "react-hot-toast";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
-import PublicReview from "../../ServicesPage/PublicReview/PublicReview";
+import PublicReview from "../../Shared/PublicReview/PublicReview";
 
 const ServiceDetails = () => {
   const { user } = useContext(AuthContext);
   const service = useLoaderData().data;
   const [reviews, setReviews] = useState([]);
-  const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
   const { picture, title, description, _id } = service;
 
   const handlePostReview = (event) => {
@@ -24,6 +24,7 @@ const ServiceDetails = () => {
       photo: user?.photoURL,
       review: textArea,
       productId: _id,
+      serviceTitle: title,
     };
 
     fetch("http://localhost:5000/review", {
@@ -37,7 +38,7 @@ const ServiceDetails = () => {
       .then((data) => {
         toast.success("Review Added Successfully");
       });
-      forceUpdate()
+    forceUpdate();
   };
 
   useEffect(() => {
@@ -139,7 +140,7 @@ const ServiceDetails = () => {
           <>
             <h2 className="text-3xl font-bold text-center capitalize text-cyan-500">
               Please{" "}
-              <Link className="underline text-blue-600" to="/login">
+              <Link className="underline text-blue-600" to={`/reviews/${_id}`}>
                 login
               </Link>{" "}
               To add a review
