@@ -140,7 +140,7 @@ const ServiceDetails = () => {
           <>
             <h2 className="text-3xl font-bold text-center capitalize text-cyan-500">
               Please{" "}
-              <Link className="underline text-blue-600" to={`/reviews/${_id}`}>
+              <Link className="underline text-blue-600" to={`/add_review/${_id}`}>
                 login
               </Link>{" "}
               To add a review

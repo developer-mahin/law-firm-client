@@ -1,17 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthProvider";
-import AllMyReview from "./AllMyRevire/AllMyReview";
+import AllMyReview from "./AllMyReview/AllMyReview";
 
 const MyReviewPage = () => {
   const { user } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
+  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
   useEffect(() => {
     fetch(`http://localhost:5000/review?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyReviews(data.data));
-  }, [user?.email]);
+  }, [user?.email, ignored]);
 
   const handleDeleteReview = (_id) => {
     const proceed = window.confirm("Are your sure to delete this review");
@@ -43,7 +44,8 @@ const MyReviewPage = () => {
       <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
         {myReviews.map((reviewInfo) => (
           <AllMyReview
-            key={reviewInfo}
+          forceUpdate={forceUpdate}
+            key={reviewInfo._id}
             reviewInfo={reviewInfo}
             handleDeleteReview={handleDeleteReview}
           ></AllMyReview>
