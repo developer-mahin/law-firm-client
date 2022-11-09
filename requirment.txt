@@ -29,7 +29,7 @@ However, your website **cannot** be related to your **previous assignments** or 
 6. On clicking the view details button, the user will be taken to the service details page: _/services/:id_ route ✅
 
 
-7. The service details route will have two sections.
+7. The service details route will have two sections. ✅
 
 	7.1. **Service section:-** show all the details of that Service with full description. ✅
 	
@@ -53,7 +53,7 @@ However, your website **cannot** be related to your **previous assignments** or 
 13. Add one more public route: Blogs. You will have to answer the following questions on the Blog page
 
 	- Difference between SQL and NoSQL
-	- What is JWT, and how does it work?
+	- What is JWT, and 
 	- What is the difference between javascript and NodeJS?
 	- How does NodeJS handle multiple requests at the same time?
 
