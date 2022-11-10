@@ -23,10 +23,26 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
 
+        const currentUser = {
+          email: user.email,
+        };
+
         updateProfileWithNameAndPhoto(name, photoURL)
           .then(() => {
             toast.success("Successfully registered");
             form.reset();
+            // jwt token
+            fetch("https://law-firm-server.vercel.app/jwt", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(currentUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                localStorage.setItem("JWT-Token", data.token);
+              });
           })
           .catch((error) => {
             toast.error(error.message);
@@ -43,6 +59,24 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         toast.success("Successfully Login");
+
+
+        const currentUser = {
+          email: user.email,
+        };
+
+        // jwt token
+        fetch("https://law-firm-server.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("JWT-Token", data.token);
+          });
       })
       .catch((error) => {
         console.error(error);
