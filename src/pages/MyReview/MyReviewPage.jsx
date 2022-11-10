@@ -11,7 +11,7 @@ const MyReviewPage = () => {
   useTitle("My review");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review?email=${user?.email}`, {
+    fetch(`https://law-firm-server.vercel.app/review?email=${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("JWT-Token")}`,
       },
@@ -35,7 +35,7 @@ const MyReviewPage = () => {
   const handleDeleteReview = (_id) => {
     const proceed = window.confirm("Are your sure to delete this review");
     if (proceed) {
-      fetch(`http://localhost:5000/review/${_id}`, {
+      fetch(`https://law-firm-server.vercel.app/review/${_id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -52,7 +52,7 @@ const MyReviewPage = () => {
   };
 
   const handleUpdateReview = (_id) => {
-    fetch(`http://localhost:5000/review/${_id}`, {
+    fetch(`https://law-firm-server.vercel.app/review/${_id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

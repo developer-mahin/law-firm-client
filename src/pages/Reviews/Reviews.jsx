@@ -33,7 +33,7 @@ const Reviews = () => {
       time: date
     };
 
-    fetch("http://localhost:5000/review", {
+    fetch("https://law-firm-server.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -50,7 +50,7 @@ const Reviews = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review/${_id}`)
+    fetch(`https://law-firm-server.vercel.app/review/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data.data);

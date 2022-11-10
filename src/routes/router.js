@@ -29,14 +29,14 @@ const router = createBrowserRouter([
             {
                 path: "/services",
                 // loader: () => {
-                //     return fetch("http://localhost:5000/allServices")
+                //     return fetch("https://law-firm-server.vercel.app/allServices")
                 // },
                 element: <ServicesPage></ServicesPage>
             },
             {
                 path: "/services/:id",
                 loader: ({ params }) => {
-                    return fetch(`http://localhost:5000/allServices/${params.id}`)
+                    return fetch(`https://law-firm-server.vercel.app/allServices/${params.id}`)
                 },
                 element: <ServiceDetails></ServiceDetails>
             },
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
             {
                 path: '/add_review/:id',
                 loader: ({ params }) => {
-                    return fetch(`http://localhost:5000/allServices/${params.id}`)
+                    return fetch(`https://law-firm-server.vercel.app/allServices/${params.id}`)
                 },
                 element: <PrivateRouter><Reviews></Reviews></PrivateRouter>
             },

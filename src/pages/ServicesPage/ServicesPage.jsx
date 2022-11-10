@@ -9,7 +9,7 @@ const ServicesPage = () => {
   useTitle("Services");
 
   useEffect(() => {
-    fetch("http://localhost:5000/allServices")
+    fetch("https://law-firm-server.vercel.app/allServices")
       .then((res) => res.json())
       .then((data) => {
         setServices(data.data);
@@ -18,6 +18,7 @@ const ServicesPage = () => {
         }
       });
   }, [services.length]);
+
 
   return (
     <div className="container mx-auto lg:mt-8 mt-2">
