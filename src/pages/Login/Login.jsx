@@ -1,17 +1,16 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { FaFacebook } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
   const { signInWithGoogle, loginUser } = useContext(AuthContext);
-  useTitle("Login")
-  const navigate = useNavigate()
-  const location = useLocation()
-  const from = location.state?.from?.pathname || "/"
-
+  useTitle("Login");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   // login with email and password
   const handleLogin = (event) => {
@@ -23,10 +22,25 @@ const Login = () => {
     loginUser(email, password)
       .then((result) => {
         const user = result.user;
-        
+        const currentUser = {
+          email: user.email,
+        };
         toast.success("Successfully login");
         form.reset();
-        navigate(from, {replace: true})
+
+        // jwt token
+        fetch("https://law-firm-server.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("JWT-Token", data.token);
+            navigate(from, { replace: true });
+          });
       })
       .catch((error) => {
         toast.error(error.message);
@@ -39,7 +53,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         toast.success("Successfully Login");
-        navigate(from, {replace: true})
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);

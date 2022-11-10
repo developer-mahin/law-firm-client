@@ -1,21 +1,40 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import AllMyReview from "./AllMyReview/AllMyReview";
 
 const MyReviewPage = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOutUser } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
   const [updateReview, setUpdateReview] = useState("");
   useTitle("My review");
 
   useEffect(() => {
-    fetch(`https://law-firm-server.vercel.app/review?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => setMyReviews(data.data));
-  }, [user?.email, myReviews]);
+    fetch(`https://law-firm-server.vercel.app/review?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("JWT-Token")}`,
+      },
+    })
+      .then((res) => {
+        console.log(res.status);
+        if (res.status === 401 || res.status === 403) {
+          logOutUser()
+            .then(() => {})
+            .catch((err) => {
+              console.error(err);
+            });
+            
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setMyReviews(data.data);
+      });
+
+    // .then((res) => res.json())
+    // .then((data) => setMyReviews(data.data));
+  }, [user?.email, myReviews, logOutUser]);
 
   const handleDeleteReview = (_id) => {
     const proceed = window.confirm("Are your sure to delete this review");
@@ -67,7 +86,7 @@ const MyReviewPage = () => {
       <div>
         {myReviews.length === 0 ? (
           <>
-            <h2 className="text-3xl text-cyan-500 text-center font-bold">
+            <h2 className="lg:text-5xl text-3xl text-cyan-500 text-center font-bold">
               No reviews were added
             </h2>
           </>

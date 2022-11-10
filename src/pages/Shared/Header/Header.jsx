@@ -21,12 +21,7 @@ const Header = () => {
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 border-b-2">
       <div className="relative flex items-center justify-between">
-        <Link
-          to="/"
-          aria-label="Company"
-          title="Company"
-          className="inline-flex items-center"
-        >
+        <Link to="/" className="inline-flex items-center">
           <img src={logo} className="w-16 " alt="" />
           <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 capitalize">
             Mahin Khan
@@ -40,8 +35,6 @@ const Header = () => {
           <li>
             <Link
               to="/home"
-              aria-label="Our product"
-              title="Our product"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
               Home
@@ -50,8 +43,6 @@ const Header = () => {
           <li>
             <Link
               to="/services"
-              aria-label="Our product"
-              title="Our product"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
               Services
@@ -63,8 +54,6 @@ const Header = () => {
               <li>
                 <Link
                   to="/my_review"
-                  aria-label="Product pricing"
-                  title="Product pricing"
                   className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                 >
                   My Review
@@ -73,8 +62,6 @@ const Header = () => {
               <li>
                 <Link
                   to="/add_services"
-                  aria-label="About us"
-                  title="About us"
                   className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                 >
                   Add Services
@@ -85,8 +72,6 @@ const Header = () => {
           <li>
             <Link
               to="/blog"
-              aria-label="About us"
-              title="About us"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
               Blog
@@ -169,16 +154,11 @@ const Header = () => {
             </svg>
           </button>
           {isMenuOpen && (
-            <div className="absolute top-0 left-0 w-full">
+            <div className="absolute top-0 left-0 w-full z-50">
               <div className="p-5 bg-white border rounded shadow-sm">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <Link
-                      to="/"
-                      aria-label="Company"
-                      title="Company"
-                      className="inline-flex items-center"
-                    >
+                    <Link to="/" className="inline-flex items-center">
                       <img src={logo} className="w-16 " alt="" />
                       <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 capitalize">
                         Mahin Khan
@@ -191,8 +171,6 @@ const Header = () => {
                   </div>
                   <div>
                     <button
-                      aria-label="Close Menu"
-                      title="Close Menu"
                       className="p-2 -mt-2 -mr-2 transition duration-200 rounded hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                       onClick={() => setIsMenuOpen(false)}
                     >
@@ -210,8 +188,6 @@ const Header = () => {
                     <li>
                       <Link
                         to="/home"
-                        aria-label="Our product"
-                        title="Our product"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Home
@@ -220,8 +196,6 @@ const Header = () => {
                     <li>
                       <Link
                         to="/services"
-                        aria-label="Our product"
-                        title="Our product"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Services
@@ -232,8 +206,6 @@ const Header = () => {
                         <li>
                           <Link
                             to="/my_review"
-                            aria-label="Product pricing"
-                            title="Product pricing"
                             className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                           >
                             My Review
@@ -242,8 +214,6 @@ const Header = () => {
                         <li>
                           <Link
                             to="/add_services"
-                            aria-label="About us"
-                            title="About us"
                             className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                           >
                             Add Services
@@ -254,8 +224,6 @@ const Header = () => {
                     <li>
                       <Link
                         to="/blog"
-                        aria-label="About us"
-                        title="About us"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Blog
