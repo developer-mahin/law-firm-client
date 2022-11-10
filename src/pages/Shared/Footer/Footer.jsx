@@ -25,26 +25,31 @@ const Footer = () => {
         </div>
         <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
           <div className="space-y-3">
-            <h3 className="tracking-wide uppercase text-gray-50">Product</h3>
+            <h3 className="tracking-wide uppercase text-gray-50">Pages</h3>
             <ul className="space-y-1">
               <li>
-                <Link rel="noopener noreferrer" href="#">
-                  Features
+                <Link rel="noopener noreferrer" to="/home">
+                  Home
                 </Link>
               </li>
               <li>
-                <Link rel="noopener noreferrer" href="#">
-                  Integrations
+                <Link rel="noopener noreferrer" to="/services">
+                  Services
                 </Link>
               </li>
               <li>
-                <Link rel="noopener noreferrer" href="#">
-                  Pricing
+                <Link rel="noopener noreferrer" to="/my_review">
+                  My Review
                 </Link>
               </li>
               <li>
-                <Link rel="noopener noreferrer" href="#">
-                  FAQ
+                <Link rel="noopener noreferrer" to="/add_services">
+                  Add Service
+                </Link>
+              </li>
+              <li>
+                <Link rel="noopener noreferrer" to="/blog">
+                  Blog
                 </Link>
               </li>
             </ul>
@@ -53,12 +58,12 @@ const Footer = () => {
             <h3 className="tracking-wide uppercase text-gray-50">Company</h3>
             <ul className="space-y-1">
               <li>
-                <Link rel="noopener noreferrer" href="#">
+                <Link rel="noopener noreferrer">
                   Privacy
                 </Link>
               </li>
               <li>
-                <Link rel="noopener noreferrer" href="#">
+                <Link rel="noopener noreferrer">
                   Terms of Service
                 </Link>
               </li>
@@ -68,17 +73,17 @@ const Footer = () => {
             <h3 className="uppercase text-gray-50">Developers</h3>
             <ul className="space-y-1">
               <li>
-                <Link rel="noopener noreferrer" href="#">
+                <Link rel="noopener noreferrer">
                   Public API
                 </Link>
               </li>
               <li>
-                <Link rel="noopener noreferrer" href="#">
+                <Link rel="noopener noreferrer">
                   Documentation
                 </Link>
               </li>
               <li>
-                <Link rel="noopener noreferrer" href="#">
+                <Link rel="noopener noreferrer">
                   Guides
                 </Link>
               </li>
@@ -136,7 +141,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="py-6 text-sm text-center text-gray-400">
-        © 1968 Company Co. All rights reserved.
+        © 2022 Law Firm Bangladesh. All rights reserved.
       </div>
     </footer>
   );

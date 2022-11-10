@@ -20,7 +20,6 @@ const Home = () => {
 
   return (
     <div className="">
-      {/* <Slider></Slider> */}
       <Banner></Banner>
       <About></About>
       <div className="container mx-auto py-16">

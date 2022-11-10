@@ -6,16 +6,6 @@ const ErrorPage = () => {
     console.log(error)
   return (
     <section className="flex items-center h-full p-16 dark:bg-gray-900 dark:text-gray-100">
-
-
-{/* <div>
-        <img
-          src="https://quicklaunch.io/wp-content/uploads/2019/10/user-registration.png"
-          alt=""
-        />
-      </div> */}
-
-
       <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
         <div className="max-w-md text-center">
           <h2 className="mb-8 font-extrabold text-9xl dark:text-gray-600">
