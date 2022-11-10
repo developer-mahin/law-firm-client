@@ -131,7 +131,7 @@ const Blog = () => {
               />
               <div className="p-6 space-y-2">
                 <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">
-                  What What is the difference between javascript and Node JS?
+                  What is the difference between javascript and Node JS?
                 </h3>
                 <span className="text-xs dark:text-gray-400">
                   November 09, 2022
