@@ -1,12 +1,23 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Spinner } from "flowbite-react";
+import React, { useEffect, useState } from "react";
 import useTitle from "../../hooks/useTitle";
 import Services from "../Shared/Services/Services";
 
 const ServicesPage = () => {
-  const services = useLoaderData().data;
-  useTitle("Services")
+  const [loading, setLoading] = useState(true);
+  const [services, setServices] = useState([]);
+  useTitle("Services");
 
+  useEffect(() => {
+    fetch("http://localhost:5000/allServices")
+      .then((res) => res.json())
+      .then((data) => {
+        setServices(data.data);
+        if (services.length > 0) {
+          setLoading(false);
+        }
+      });
+  }, [services.length]);
 
   return (
     <div className="container mx-auto lg:mt-8 mt-2">
@@ -19,10 +30,22 @@ const ServicesPage = () => {
         </h2>
       </div>
 
-      <div className="grid gap-5 mb-8 md:grid-cols-2 lg:grid-cols-3">
-        {services.map((service) => (
-          <Services key={service._id} service={service}></Services>
-        ))}
+      <div className="">
+        {loading ? (
+          <>
+            <div className="flex justify-center items-center h-[500px]">
+              <Spinner aria-label="Extra large spinner example" size="xl" />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="grid gap-5 mb-8 md:grid-cols-2 lg:grid-cols-3">
+              {services.map((service) => (
+                <Services key={service._id} service={service}></Services>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -16,9 +16,12 @@ const Reviews = () => {
 
 
   const handlePostReview = (event) => {
+
     event.preventDefault();
     const form = event.target;
     const textArea = form.review.value;
+    const date = new Date().toString().slice(0, 21)
+
 
     const reviewInfo = {
       name: user?.displayName,
@@ -27,11 +30,10 @@ const Reviews = () => {
       review: textArea,
       productId: _id,
       serviceTitle: title,
+      time: date
     };
 
-    console.log(reviewInfo.serviceTitle);
-
-    fetch("https://law-firm-server.vercel.app/review", {
+    fetch("http://localhost:5000/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -48,7 +50,7 @@ const Reviews = () => {
   };
 
   useEffect(() => {
-    fetch(`https://law-firm-server.vercel.app/review/${_id}`)
+    fetch(`http://localhost:5000/review/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data.data);

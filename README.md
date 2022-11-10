@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Getting Started with My Lawyer Services Site
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Website Details:
 
-## Available Scripts
+- Website Name: Law Firm In Bangladesh
+- Live site url: https://law-firm-assignment.web.app/
 
-In the project directory, you can run:
+## Which technology is used?
 
-### `npm start`
+### For Functionality
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- JavaScript
+- React
+- React Router
+- React Context API
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## For Authentication system
 
-### `npm test`
+- Google Firebase
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## For The Back-end
 
-### `npm run build`
+- Node.js
+- Express.js
+- ## Database
+- MongoDB
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### For styles
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Tailwind CSS
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Components library
 
-### `npm run eject`
+- Flowbite-react https://flowbite-react.com/
+- Flowbite https://flowbite.com/
+- MambaUI https://www.mambaui.com/
+- Kitwind https://kitwind.io/products/kometa/components/
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## What Kind Of Feature Are Available
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- ### You can get lawyer facilities from this website
+- ### We have six types of services. You can see all services from service page
+- ### If you want to read the full description of the service then click the Read More button
+- ### When you go to the details page you can see a review option at the bottom of the page
+- ### If you are not logged in, you will need to log in before leaving a review
+- ### By going to the login page, you can also login with google if you want
+- ### If you do not login/register then you will not be able to receive our review feature
+- ### After login you can see 2 more features.
+1. My review
+2. Add Service
+- ### You can see all the reviews you have done on the My Review page. if you want You can delete or edit reviews there
+- ### Add service page has the feature to add service as per your wish. You can add if you want

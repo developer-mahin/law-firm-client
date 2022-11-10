@@ -3,13 +3,23 @@ import { Link, useRouteError } from "react-router-dom";
 
 const ErrorPage = () => {
     const error = useRouteError()
-
+    console.log(error)
   return (
     <section className="flex items-center h-full p-16 dark:bg-gray-900 dark:text-gray-100">
+
+
+{/* <div>
+        <img
+          src="https://quicklaunch.io/wp-content/uploads/2019/10/user-registration.png"
+          alt=""
+        />
+      </div> */}
+
+
       <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
         <div className="max-w-md text-center">
           <h2 className="mb-8 font-extrabold text-9xl dark:text-gray-600">
-            <span className="sr-only">Error</span> 404 {error.status}
+            <span className="sr-only">Error</span>{error?.status}
           </h2>
           <p className="text-2xl font-semibold md:text-3xl mb-8">
             Sorry, we couldn't find this page.

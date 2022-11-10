@@ -23,7 +23,7 @@ const AddService = () => {
       rating,
     };
 
-    fetch("https://law-firm-server.vercel.app/service", {
+    fetch("http://localhost:5000/service", {
       method: "POST",
       headers: {
         "content-type": "application/json",

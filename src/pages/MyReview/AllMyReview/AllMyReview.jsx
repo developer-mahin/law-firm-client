@@ -8,7 +8,7 @@ const AllMyReview = ({
   setUpdateReview,
   handleUpdateReview,
 }) => {
-  const { _id, name, photo, review, serviceTitle } = reviewInfo;
+  const { _id, name, photo, review, serviceTitle, time } = reviewInfo;
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -31,7 +31,7 @@ const AllMyReview = ({
                 </div>
                 <div>
                   <h4 className="font-bold">{name}</h4>
-                  <span className="text-xs dark:text-gray-400">2 days ago</span>
+                  <span className="text-xs dark:text-gray-400">{time}</span>
                 </div>
               </div>
               <div className="flex items-center space-x-2 dark:text-yellow-500">
