@@ -1,23 +1,26 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 import AllMyReview from "./AllMyReview/AllMyReview";
 
 const MyReviewPage = () => {
   const { user } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
-  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
+  const [updateReview, setUpdateReview] = useState("");
+  useTitle("My review");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review?email=${user?.email}`)
+    fetch(`https://law-firm-server.vercel.app/review?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyReviews(data.data));
-  }, [user?.email, ignored]);
+  }, [user?.email, myReviews]);
 
   const handleDeleteReview = (_id) => {
     const proceed = window.confirm("Are your sure to delete this review");
     if (proceed) {
-      fetch(`http://localhost:5000/review/${_id}`, {
+      fetch(`https://law-firm-server.vercel.app/review/${_id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -27,10 +30,30 @@ const MyReviewPage = () => {
             const remaining = myReviews.filter(
               (myReview) => myReview._id !== _id
             );
-            setMyReviews(remaining)
+            setMyReviews(remaining);
           }
         });
     }
+  };
+
+  const handleUpdateReview = (_id) => {
+    fetch(`https://law-firm-server.vercel.app/review/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ review: updateReview }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Successfully update the review");
+        if (data.success) {
+          const remaining = myReviews.filter(
+            (myReview) => myReview._id !== _id
+          );
+          setMyReviews(remaining);
+        }
+      });
   };
 
   return (
@@ -41,15 +64,28 @@ const MyReviewPage = () => {
         </p>
         <h2 className="text-3xl  font-bold uppercase">All my reviews</h2>
       </div>
-      <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
-        {myReviews.map((reviewInfo) => (
-          <AllMyReview
-          forceUpdate={forceUpdate}
-            key={reviewInfo._id}
-            reviewInfo={reviewInfo}
-            handleDeleteReview={handleDeleteReview}
-          ></AllMyReview>
-        ))}
+      <div>
+        {myReviews.length === 0 ? (
+          <>
+            <h2 className="text-3xl text-cyan-500 text-center font-bold">
+              No reviews were added
+            </h2>
+          </>
+        ) : (
+          <>
+            <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
+              {myReviews.map((reviewInfo) => (
+                <AllMyReview
+                  setUpdateReview={setUpdateReview}
+                  key={reviewInfo._id}
+                  reviewInfo={reviewInfo}
+                  handleUpdateReview={handleUpdateReview}
+                  handleDeleteReview={handleDeleteReview}
+                ></AllMyReview>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

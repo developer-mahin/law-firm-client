@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 import Services from "../Shared/Services/Services";
 import About from "./AboutUs/About";
 import Banner from "./Banner/Banner";
 import ChooseClient from "./ChooseClient/ChooseClient";
-import Slider from "./Slider/Slider";
 
 const Home = () => {
   const [services, setServices] = useState([]);
+  useTitle("Home")
 
   useEffect(() => {
-    fetch("http://localhost:5000/services")
+    fetch("https://law-firm-server.vercel.app/services")
       .then((res) => res.json())
       .then((data) => {
         setServices(data.data);

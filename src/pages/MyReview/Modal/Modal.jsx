@@ -1,7 +1,7 @@
 import React from "react";
 import "./Modal.css";
 
-function Modal({ setOpenModal, handleUpdateReview, setUpdateReview }) {
+function Modal({ setOpenModal, handleUpdateReview, setUpdateReview, _id }) {
 
   return (
     <div className="modalBackground">
@@ -39,7 +39,7 @@ function Modal({ setOpenModal, handleUpdateReview, setUpdateReview }) {
             Cancel
           </button>
           <button
-            onClick={handleUpdateReview}
+            onClick={()=>handleUpdateReview(_id)}
             className="px-6 py-3 rounded-full"
           >
             Continue Update

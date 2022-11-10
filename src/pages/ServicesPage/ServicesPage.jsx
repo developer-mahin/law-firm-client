@@ -1,9 +1,12 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 import Services from "../Shared/Services/Services";
 
 const ServicesPage = () => {
   const services = useLoaderData().data;
+  useTitle("Services")
+
 
   return (
     <div className="container mx-auto lg:mt-8 mt-2">

@@ -3,15 +3,15 @@ import { FaFacebook } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
   const { signInWithGoogle, loginUser } = useContext(AuthContext);
+  useTitle("Login")
   const navigate = useNavigate()
   const location = useLocation()
-  console.log(location);
   const from = location.state?.from?.pathname || "/"
 
-  console.log(from)
 
   // login with email and password
   const handleLogin = (event) => {

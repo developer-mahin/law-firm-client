@@ -1,17 +1,18 @@
 import { Rating } from "flowbite-react";
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
+import useTitle from "../../../hooks/useTitle";
 import PublicReview from "../../Shared/PublicReview/PublicReview";
 
 const ServiceDetails = () => {
   const { user } = useContext(AuthContext);
   const service = useLoaderData().data;
   const [reviews, setReviews] = useState([]);
-  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
   const { picture, title, description, _id } = service;
+  useTitle("Service Details")
 
   const handlePostReview = (event) => {
     event.preventDefault();
@@ -27,7 +28,7 @@ const ServiceDetails = () => {
       serviceTitle: title,
     };
 
-    fetch("http://localhost:5000/review", {
+    fetch("https://law-firm-server.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -37,17 +38,20 @@ const ServiceDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         toast.success("Review Added Successfully");
+        if (data.success) {
+          const remaining = reviews.filter((review) => console.log(review));
+          setReviews(remaining);
+        }
       });
-    forceUpdate();
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review/${_id}`)
+    fetch(`https://law-firm-server.vercel.app/review/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data.data);
       });
-  }, [_id, ignored]);
+  }, [_id, reviews]);
 
   return (
     <div>
@@ -140,7 +144,10 @@ const ServiceDetails = () => {
           <>
             <h2 className="text-3xl font-bold text-center capitalize text-cyan-500">
               Please{" "}
-              <Link className="underline text-blue-600" to={`/add_review/${_id}`}>
+              <Link
+                className="underline text-blue-600"
+                to={`/add_review/${_id}`}
+              >
                 login
               </Link>{" "}
               To add a review

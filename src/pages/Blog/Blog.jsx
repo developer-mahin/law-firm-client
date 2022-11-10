@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 const Blog = () => {
+
+  useTitle("Blog")
+
+
   return (
     <div>
       <div className="text-center py-5">

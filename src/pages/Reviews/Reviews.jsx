@@ -2,18 +2,18 @@ import React, { useContext, useEffect, useReducer, useState } from "react";
 import toast from "react-hot-toast";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 import PublicReview from "../Shared/PublicReview/PublicReview";
 
 const Reviews = () => {
   const { user } = useContext(AuthContext);
   const service = useLoaderData().data;
+  useTitle("Add Review")
   const [reviews, setReviews] = useState([]);
   const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
   const { title, _id } = service;
   const navigate = useNavigate();
 
-
-  console.log(service);
 
   const handlePostReview = (event) => {
     event.preventDefault();
@@ -31,7 +31,7 @@ const Reviews = () => {
 
     console.log(reviewInfo.serviceTitle);
 
-    fetch("http://localhost:5000/review", {
+    fetch("https://law-firm-server.vercel.app/review", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -42,12 +42,13 @@ const Reviews = () => {
       .then((data) => {
         toast.success("Review Added Successfully");
         navigate(`/services/${_id}`)
+        forceUpdate();
       });
-    forceUpdate();
+    
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review/${_id}`)
+    fetch(`https://law-firm-server.vercel.app/review/${_id}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data.data);

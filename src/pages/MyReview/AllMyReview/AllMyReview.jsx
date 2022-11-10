@@ -1,27 +1,15 @@
 import React, { useState } from "react";
-import toast from "react-hot-toast";
 import Modal from "../Modal/Modal";
 import "./AllMyReview.css";
 
-const AllMyReview = ({ reviewInfo, handleDeleteReview, forceUpdate }) => {
+const AllMyReview = ({
+  reviewInfo,
+  handleDeleteReview,
+  setUpdateReview,
+  handleUpdateReview,
+}) => {
   const { _id, name, photo, review, serviceTitle } = reviewInfo;
   const [modalOpen, setModalOpen] = useState(false);
-  const [updateReview, setUpdateReview] = useState("");
-
-  const handleUpdateReview = () => {
-    fetch(`http://localhost:5000/review/${_id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ review: updateReview }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        toast.success("Successfully update the review");
-      });
-      forceUpdate()
-  };
 
   return (
     <div>
@@ -77,6 +65,7 @@ const AllMyReview = ({ reviewInfo, handleDeleteReview, forceUpdate }) => {
 
                   {modalOpen && (
                     <Modal
+                      _id={_id}
                       setUpdateReview={setUpdateReview}
                       handleUpdateReview={handleUpdateReview}
                       setOpenModal={setModalOpen}

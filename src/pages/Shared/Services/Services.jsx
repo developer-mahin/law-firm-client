@@ -4,8 +4,10 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 
+
 const Services = ({ service }) => {
   const { picture, title, description, _id, price, rating } = service;
+
 
   return (
     <div className="mt-8 px-2 md:px-0">

@@ -1,7 +1,6 @@
 import React from "react";
 
 const PublicReview = ({ reviewInfo }) => {
-  console.log(reviewInfo);
   const { name, photo, review } = reviewInfo;
 
   return (

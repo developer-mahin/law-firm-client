@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const Register = () => {
   const { signInWithGoogle, createUser, updateProfileWithNameAndPhoto } =
     useContext(AuthContext);
+  useTitle("Register")
 
   // create user with email and password
   const handlerCreateUser = (event) => {
