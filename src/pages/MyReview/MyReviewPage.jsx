@@ -27,7 +27,12 @@ const MyReviewPage = () => {
         return res.json();
       })
       .then((data) => {
-        setMyReviews(data.data);
+        if (data.success) {
+          setMyReviews(data.data);
+        }
+      })
+      .catch((err) => {
+        toast.success(err.message);
       });
   }, [user?.email, myReviews, logOutUser]);
 
@@ -71,39 +76,38 @@ const MyReviewPage = () => {
   };
 
   return (
-
-        <>
-          <div className="container mx-auto py-8">
-            <div className="text-center py-8">
-              <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-400">
-                MY REVIEWS
-              </p>
-              <h2 className="text-3xl  font-bold uppercase">All my reviews</h2>
-            </div>
-            <div>
-              {myReviews.length === 0 ? (
-                <>
-                  <h2 className="lg:text-5xl text-3xl text-cyan-500 text-center font-bold">
-                    No reviews were added
-                  </h2>
-                </>
-              ) : (
-                <>
-                  <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
-                    {myReviews.map((reviewInfo) => (
-                      <AllMyReview
-                        setUpdateReview={setUpdateReview}
-                        key={reviewInfo._id}
-                        reviewInfo={reviewInfo}
-                        handleUpdateReview={handleUpdateReview}
-                        handleDeleteReview={handleDeleteReview}
-                      ></AllMyReview>
-                    ))}
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
+    <>
+      <div className="container mx-auto py-8">
+        <div className="text-center py-8">
+          <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-400">
+            MY REVIEWS
+          </p>
+          <h2 className="text-3xl  font-bold uppercase">All my reviews</h2>
+        </div>
+        <div>
+          {myReviews.length === 0 ? (
+            <>
+              <h2 className="lg:text-5xl text-3xl text-cyan-500 text-center font-bold">
+                No reviews were added
+              </h2>
+            </>
+          ) : (
+            <>
+              <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
+                {myReviews.map((reviewInfo) => (
+                  <AllMyReview
+                    setUpdateReview={setUpdateReview}
+                    key={reviewInfo._id}
+                    reviewInfo={reviewInfo}
+                    handleUpdateReview={handleUpdateReview}
+                    handleDeleteReview={handleDeleteReview}
+                  ></AllMyReview>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </>
   );
 };

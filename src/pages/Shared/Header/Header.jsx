@@ -111,24 +111,12 @@ const Header = () => {
             </>
           )}
           <li>
-            {user?.uid ? (
-              <>
-                <img
-                  src={user?.photoURL}
-                  className="w-12 h-12 rounded-full"
-                  alt=""
-                />
-              </>
-            ) : (
-              <>
-                {" "}
-                <img
-                  src="https://png.pngtree.com/png-vector/20220817/ourmid/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png"
-                  alt=""
-                  className="w-12 h-12 rounded-full"
-                />{" "}
-              </>
-            )}
+            <img
+              src="https://png.pngtree.com/png-vector/20220817/ourmid/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png"
+              alt=""
+              title={user?.displayName}
+              className="w-12 h-12 rounded-full cursor-pointer"
+            />
           </li>
         </ul>
         <div className="lg:hidden">
@@ -263,24 +251,11 @@ const Header = () => {
                         </>
                       )}
                       <li>
-                        {user?.uid ? (
-                          <>
-                            <img
-                              src={user?.photoURL}
-                              className="w-12 h-12 rounded-full"
-                              alt=""
-                            />
-                          </>
-                        ) : (
-                          <>
-                            {" "}
-                            <img
-                              src="https://png.pngtree.com/png-vector/20220817/ourmid/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png"
-                              alt=""
-                              className="w-12 h-12 rounded-full"
-                            />{" "}
-                          </>
-                        )}
+                        <img
+                          src="https://png.pngtree.com/png-vector/20220817/ourmid/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png"
+                          alt=""
+                          className="w-12 h-12 rounded-full"
+                        />
                       </li>
                     </div>
                   </ul>
