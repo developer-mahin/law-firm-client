@@ -4,6 +4,7 @@ import AddService from "../pages/AddService/AddService";
 import Blog from "../pages/Blog/Blog";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
+import ProfileDetails from "../pages/Home/Profile/ProfileDetails";
 import Login from "../pages/Login/Login";
 import MyReviewPage from "../pages/MyReview/MyReviewPage";
 import Register from "../pages/Register/Register";
@@ -48,21 +49,31 @@ const router = createBrowserRouter([
             {
                 path: "/my_review",
                 element: <PrivateRouter> <MyReviewPage></MyReviewPage> </PrivateRouter>
+                // element: <MyReviewPage></MyReviewPage>
             },
             {
                 path: '/add_services',
-                element: <PrivateRouter><AddService></AddService></PrivateRouter>
+                // element: <PrivateRouter><AddService></AddService></PrivateRouter>
+                element: <AddService></AddService>
             },
             {
                 path: '/add_review/:id',
                 loader: ({ params }) => {
                     return fetch(`https://law-firm-server.vercel.app/allServices/${params.id}`)
                 },
-                element: <PrivateRouter><Reviews></Reviews></PrivateRouter>
+                // element: <PrivateRouter><Reviews></Reviews></PrivateRouter>
+                element: <Reviews></Reviews>
             },
             {
                 path: "/blog",
                 element: <Blog></Blog>
+            },
+            {
+                path: "/profile_details/:id",
+                element: <ProfileDetails></ProfileDetails>,
+                loader: ({ params }) => {
+                    return fetch(`https://law-firm-server.vercel.app/profile_details/${params.id}`)
+                }
             }
 
         ]

@@ -16,18 +16,18 @@ const ContactSection = () => {
     toast.success("Successfully submit");
   };
   return (
-    <div className="lg:pt-20 pt-6">
-      <div className="text-center">
-        <div className="">
-          <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-400">
-            Contact Us
-          </p>
-        </div>
-        <h2 className="text-3xl font-bold uppercase lg:pb-8 pb-3">
-          Stay connected with us
-        </h2>
-      </div>
+    <div className="">
       <div style={contactBg}>
+        <div className="text-center">
+          <div className="">
+            <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-400">
+              Contact Us
+            </p>
+          </div>
+          <h2 className="text-3xl font-bold uppercase lg:pb-8 pb-3 text-white">
+            Stay connected with us
+          </h2>
+        </div>
         <div className="lg:w-1/3 w-full mx-auto px-3 lg:px-0">
           <form onSubmit={handleContact}>
             <input
@@ -56,7 +56,9 @@ const ContactSection = () => {
               rows="3"
             ></textarea>
             <div className="text-center">
-              <button className="px-8 py-2 bg-cyan-500 hover:bg-cyan-600 rounded-full">Submit</button>
+              <button className="px-8 py-2 bg-cyan-500 hover:bg-cyan-600 rounded-full">
+                Submit
+              </button>
             </div>
           </form>
         </div>

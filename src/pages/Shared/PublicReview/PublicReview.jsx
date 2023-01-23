@@ -9,7 +9,7 @@ const PublicReview = ({ reviewInfo }) => {
         <div className="flex space-x-4">
           <div>
             <img
-              src={photo}
+              src={photo ? photo : "https://png.pngtree.com/png-vector/20220817/ourmid/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png"}
               alt=""
               className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
             />

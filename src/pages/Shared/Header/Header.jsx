@@ -49,7 +49,7 @@ const Header = () => {
             </Link>
           </li>
 
-          {user?.uid && (
+          {/* {user?.uid && ( */}
             <>
               <li>
                 <Link
@@ -67,8 +67,8 @@ const Header = () => {
                   Add Services
                 </Link>
               </li>
-            </>
-          )}
+            </>s
+          {/* // )} */}
           <li>
             <Link
               to="/blog"

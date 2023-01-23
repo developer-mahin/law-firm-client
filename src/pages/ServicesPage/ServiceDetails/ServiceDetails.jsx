@@ -12,14 +12,13 @@ const ServiceDetails = () => {
   const service = useLoaderData().data;
   const [reviews, setReviews] = useState([]);
   const { picture, title, description, _id } = service;
-  useTitle("Service Details")
-  
+  useTitle("Service Details");
+
   const handlePostReview = (event) => {
     event.preventDefault();
     const form = event.target;
     const textArea = form.review.value;
-    const date = new Date().toString().slice(0, 21)
-
+    const date = new Date().toString().slice(0, 21);
 
     const reviewInfo = {
       name: user?.displayName,
@@ -28,7 +27,7 @@ const ServiceDetails = () => {
       review: textArea,
       productId: _id,
       serviceTitle: title,
-      time: date
+      time: date,
     };
 
     fetch("https://law-firm-server.vercel.app/review", {
@@ -76,83 +75,84 @@ const ServiceDetails = () => {
         </div>
       </div>
       <div className="py-5">
-        {user?.uid ? (
+        <div className="container mx-auto px-3 md:px-0">
+          <form onSubmit={handlePostReview}>
+            <textarea
+              name="review"
+              id=""
+              cols="30"
+              rows="4"
+              placeholder="Write your review..."
+              className="lg:w-1/2 w-full rounded shadow my-3"
+            ></textarea>
+            <br />
+            <button
+              className="bg-cyan-400 hover:bg-cyan-500 rounded-full px-8 py-2 font-semibold"
+              type="submit"
+            >
+              Review
+            </button>
+          </form>
+
+          <div className="py-4">
+            <React.Fragment>
+              <Rating>
+                <Rating.Star />
+                <Rating.Star />
+                <Rating.Star />
+                <Rating.Star />
+                <FaStarHalfAlt className="text-yellow-400"></FaStarHalfAlt>
+                <p className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+                  4.95 out of 5
+                </p>
+              </Rating>
+              <Rating.Advanced className="my-3" percentFilled={95}>
+                5 star
+              </Rating.Advanced>
+              <Rating.Advanced className="my-3" percentFilled={3}>
+                4 star
+              </Rating.Advanced>
+              <Rating.Advanced className="my-3" percentFilled={1}>
+                3 star
+              </Rating.Advanced>
+              <Rating.Advanced className="my-3" percentFilled={1}>
+                2 star
+              </Rating.Advanced>
+              <Rating.Advanced className="my-3" percentFilled={0}>
+                1 star
+              </Rating.Advanced>
+            </React.Fragment>
+
+            <div className="grid lg:grid-cols-2">
+              {reviews.map((reviewInfo) => (
+                // console.log(reviewInfo)
+                <PublicReview
+                  key={reviewInfo._id}
+                  reviewInfo={reviewInfo}
+                ></PublicReview>
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* {user?.uid ? (
           <>
             {" "}
-            <div className="container mx-auto px-3 md:px-0">
-              <form onSubmit={handlePostReview}>
-                <textarea
-                  name="review"
-                  id=""
-                  cols="30"
-                  rows="4"
-                  placeholder="Write your review..."
-                  className="lg:w-1/2 w-full rounded shadow my-3"
-                ></textarea>
-                <br />
-                <button
-                  className="bg-cyan-400 hover:bg-cyan-500 rounded-full px-8 py-2 font-semibold"
-                  type="submit"
-                >
-                  Review
-                </button>
-              </form>
-
-              <div className="py-4">
-                <React.Fragment>
-                  <Rating>
-                    <Rating.Star />
-                    <Rating.Star />
-                    <Rating.Star />
-                    <Rating.Star />
-                    <FaStarHalfAlt className="text-yellow-400"></FaStarHalfAlt>
-                    <p className="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
-                      4.95 out of 5
-                    </p>
-                  </Rating>
-                  <Rating.Advanced className="my-3" percentFilled={95}>
-                    5 star
-                  </Rating.Advanced>
-                  <Rating.Advanced className="my-3" percentFilled={3}>
-                    4 star
-                  </Rating.Advanced>
-                  <Rating.Advanced className="my-3" percentFilled={1}>
-                    3 star
-                  </Rating.Advanced>
-                  <Rating.Advanced className="my-3" percentFilled={1}>
-                    2 star
-                  </Rating.Advanced>
-                  <Rating.Advanced className="my-3" percentFilled={0}>
-                    1 star
-                  </Rating.Advanced>
-                </React.Fragment>
-
-                <div className="grid lg:grid-cols-2">
-                  {reviews.map((reviewInfo) => (
-                    // console.log(reviewInfo)
-                    <PublicReview
-                      key={reviewInfo._id}
-                      reviewInfo={reviewInfo}
-                    ></PublicReview>
-                  ))}
-                </div>
-              </div>
-            </div>
+            
           </>
-        ) : (
-          <>
-            <h2 className="text-3xl font-bold text-center capitalize text-cyan-500">
-              Please{" "}
-              <Link
-                className="underline text-blue-600"
-                to={`/add_review/${_id}`}
-              >
-                login
-              </Link>{" "}
-              To add a review
-            </h2>
-          </>
-        )}
+         ) : (
+           <>
+             <h2 className="text-3xl font-bold text-center capitalize text-cyan-500">
+               Please{" "}
+               <Link
+                 className="underline text-blue-600"
+                 to={`/add_review/${_id}`}
+               >
+                 login
+               </Link>{" "}
+               To add a review
+             </h2>
+           </>
+         )} */}
       </div>
     </div>
   );

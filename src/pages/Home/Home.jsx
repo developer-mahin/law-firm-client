@@ -7,6 +7,7 @@ import About from "./AboutUs/About";
 import Banner from "./Banner/Banner";
 import ChooseClient from "./ChooseClient/ChooseClient";
 import ContactSection from "./ContactSection/ContactSection";
+import Profile from "./Profile/Profile";
 
 const Home = () => {
   const [services, setServices] = useState([]);
@@ -60,6 +61,7 @@ const Home = () => {
           </div>
         </>
       )}
+      <Profile></Profile>
       <ChooseClient></ChooseClient>
       <ContactSection></ContactSection>
     </div>
