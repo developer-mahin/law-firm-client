@@ -13,9 +13,8 @@ const ProfileDetails = () => {
     return <BigSpinner></BigSpinner>;
   }
 
-  console.log(data);
-
   const {
+    _id,
     name,
     img,
     details,
@@ -69,7 +68,9 @@ const ProfileDetails = () => {
         </div>
       </div>
       <div className="lg:w-[1000px] w-full mx-auto px-3">
-        <CommentSection></CommentSection>
+        <CommentSection _id={_id}>
+
+        </CommentSection>
       </div>
     </div>
   );
