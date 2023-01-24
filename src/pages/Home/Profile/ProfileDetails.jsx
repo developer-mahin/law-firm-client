@@ -1,18 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useLoaderData, useNavigation } from "react-router-dom";
 import BigSpinner from "../../../components/BigSpinner";
 import useTitle from "../../../hooks/useTitle";
 import CommentSection from "./CommentSection";
+import DisplayComment from "./DisplayComment";
 
 const ProfileDetails = () => {
   const data = useLoaderData();
-  const navigation = useNavigation();
-  useTitle(data?.name);
-
-  if (navigation.state === "loading") {
-    return <BigSpinner></BigSpinner>;
-  }
-
   const {
     _id,
     name,
@@ -25,6 +20,23 @@ const ProfileDetails = () => {
     specialty,
     sunday,
   } = data;
+  const navigation = useNavigation();
+  useTitle(data?.name);
+
+  const { data: allComments = [], refetch } = useQuery({
+    queryKey: ["All Comments"],
+    queryFn: async () => {
+      const res = await fetch(`https://law-firm-server.vercel.app/comments/${_id}`);
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  console.log(allComments);
+
+  if (navigation.state === "loading") {
+    return <BigSpinner></BigSpinner>;
+  }
 
   return (
     <div className="">
@@ -67,10 +79,19 @@ const ProfileDetails = () => {
           </div>
         </div>
       </div>
+      <>
+        <h2 className="text-2xl text-center lg:py-10 py-5">Comments</h2>
+        <div className="lg:w-[1000px] w-full mx-auto px-3 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
+          {allComments.map((comment) => (
+            <DisplayComment
+              key={comment._id}
+              comment={comment}
+            ></DisplayComment>
+          ))}
+        </div>
+      </>
       <div className="lg:w-[1000px] w-full mx-auto px-3">
-        <CommentSection _id={_id}>
-
-        </CommentSection>
+        <CommentSection _id={_id} refetch={refetch}></CommentSection>
       </div>
     </div>
   );

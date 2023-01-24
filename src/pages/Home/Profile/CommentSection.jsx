@@ -1,8 +1,7 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 
-const CommentSection = ({ _id }) => {
+const CommentSection = ({ _id, refetch }) => {
   const [loading, setLoading] = useState(false);
   const handleSubmitComment = (e) => {
     setLoading(true);
@@ -18,7 +17,7 @@ const CommentSection = ({ _id }) => {
       name,
       email,
     };
-    fetch("http://localhost:5000/comment", {
+    fetch("https://law-firm-server.vercel.app/comment", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -29,6 +28,7 @@ const CommentSection = ({ _id }) => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("successfully comment submitted");
+          refetch();
           setLoading(false);
         }
       })
