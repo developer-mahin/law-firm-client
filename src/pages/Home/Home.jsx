@@ -8,6 +8,7 @@ import Banner from "./Banner/Banner";
 import ChooseClient from "./ChooseClient/ChooseClient";
 import ContactSection from "./ContactSection/ContactSection";
 import Profile from "./Profile/Profile";
+import Testimonial from "./Testimonial/Testimonial";
 
 const Home = () => {
   const [services, setServices] = useState([]);
@@ -62,6 +63,7 @@ const Home = () => {
         </>
       )}
       <Profile></Profile>
+      <Testimonial></Testimonial>
       <ChooseClient></ChooseClient>
       <ContactSection></ContactSection>
     </div>
