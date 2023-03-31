@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { toast } from "react-hot-toast";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const CommentSection = ({ _id, refetch }) => {
   const [loading, setLoading] = useState(false);
+  const {user} = useContext(AuthContext)
   const handleSubmitComment = (e) => {
     setLoading(true);
     e.preventDefault();
@@ -16,7 +18,9 @@ const CommentSection = ({ _id, refetch }) => {
       message,
       name,
       email,
+      photo: user?.photoURL
     };
+
     fetch("https://law-firm-server.vercel.app/comment", {
       method: "POST",
       headers: {
@@ -29,6 +33,7 @@ const CommentSection = ({ _id, refetch }) => {
         if (data.acknowledged) {
           toast.success("successfully comment submitted");
           refetch();
+          form.reset()
           setLoading(false);
         }
       })

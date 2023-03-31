@@ -6,7 +6,11 @@ import useTitle from "../../../hooks/useTitle";
 import CommentSection from "./CommentSection";
 import DisplayComment from "./DisplayComment";
 import { SiFacebook } from "react-icons/si";
-import { AiFillInstagram, AiFillTwitterCircle } from "react-icons/ai";
+import {
+  AiFillInstagram,
+  AiFillTwitterCircle,
+  AiOutlineMinus,
+} from "react-icons/ai";
 import { BsLinkedin } from "react-icons/bs";
 
 const ProfileDetails = () => {
@@ -127,8 +131,11 @@ const ProfileDetails = () => {
         </div>
       </div>
       <>
-        <h2 className="text-2xl text-center lg:py-10 py-5">Comments</h2>
-        <div className="lg:w-[1000px] w-full mx-auto px-3 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
+        <h2 className="lg:py-10 py-5 flex justify-center items-center">
+          <AiOutlineMinus className="lg:text-8xl text-4xl font-bold" />
+          <span className="lg:text-6xl text-3xl font-semibold">Comments</span>
+        </h2>
+        <div className="lg:w-[1000px] w-full mx-auto px-3">
           {allComments.map((comment) => (
             <DisplayComment
               key={comment._id}

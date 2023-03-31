@@ -1,6 +1,7 @@
 import { Rating } from "flowbite-react";
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { AiOutlineMinus } from "react-icons/ai";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
@@ -9,12 +10,14 @@ import PublicReview from "../../Shared/PublicReview/PublicReview";
 
 const ServiceDetails = () => {
   const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
   const service = useLoaderData().data;
   const [reviews, setReviews] = useState([]);
   const { picture, title, description, _id } = service;
   useTitle("Service Details");
 
   const handlePostReview = (event) => {
+    setLoading(true);
     event.preventDefault();
     const form = event.target;
     const textArea = form.review.value;
@@ -40,6 +43,12 @@ const ServiceDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         toast.success("Review Added Successfully");
+        form.reset();
+        setLoading(false);
+      })
+      .catch((err) => {
+        toast.error(err.message);
+        setLoading(false);
       });
   };
 
@@ -51,29 +60,43 @@ const ServiceDetails = () => {
       });
   }, [_id, reviews]);
 
+  const serviceDetails = {
+    backgroundImage: `linear-gradient(#1e2b47bf, #1e2b47bf), url(${picture})`,
+    width: "100%",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    padding: "71px 0px",
+  };
+
   return (
     <div>
-      <div className="container mx-auto py-6">
-        <div className="text-center py-8">
-          <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-400">
-            SERVICE DETAILS
-          </p>
-          <h2 className="text-3xl  font-bold uppercase">
-            Read Service details
-          </h2>
-        </div>
-        <div className="">
-          <img
-            src={picture}
-            className="w-full lg:h-[600px] lg-[300px]"
-            alt=""
-          />
-        </div>
-        <div className="px-4 md:px-0 py-2">
-          <h2 className="text-3xl font-bold">{title}</h2>
-          <p>{description}</p>
+      <div
+        className="lg:h-[500px] flex justify-center items-center"
+        style={serviceDetails}
+      >
+        <h2 className="lg:text-5xl text-2xl text-white font-semibold">
+          {title}
+        </h2>
+      </div>
+
+      <div className="container mx-auto lg:py-24 py-10">
+        <div className="px-4 md:px-0 py-2 grid lg:grid-cols-5">
+          <div className="lg:col-span-2">
+            <h2 className="lg:py-10 py-5 flex justify-center items-center">
+              <AiOutlineMinus className="lg:text-6xl text-4xl font-bold" />
+              <span className="lg:text-5xl text-3xl font-semibold">
+                Service Details
+              </span>
+            </h2>
+          </div>
+          <div className="lg:col-span-3">
+            <h2 className="text-3xl font-bold">{title}</h2>
+            <p>{description}</p>
+          </div>
         </div>
       </div>
+
       <div className="py-5">
         <div className="container mx-auto px-3 md:px-0">
           <form onSubmit={handlePostReview}>
@@ -84,13 +107,14 @@ const ServiceDetails = () => {
               rows="4"
               placeholder="Write your review..."
               className="lg:w-1/2 w-full rounded shadow my-3"
+              required
             ></textarea>
             <br />
             <button
               className="bg-cyan-400 hover:bg-cyan-500 rounded-full px-8 py-2 font-semibold"
               type="submit"
             >
-              Review
+              {loading ? "Loading..." : "Review"}
             </button>
           </form>
 
@@ -123,9 +147,8 @@ const ServiceDetails = () => {
               </Rating.Advanced>
             </React.Fragment>
 
-            <div className="grid lg:grid-cols-2">
+            <div className="container mx-auto">
               {reviews.map((reviewInfo) => (
-                // console.log(reviewInfo)
                 <PublicReview
                   key={reviewInfo._id}
                   reviewInfo={reviewInfo}
