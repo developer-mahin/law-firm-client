@@ -49,7 +49,7 @@ const Header = () => {
             </Link>
           </li>
 
-          {/* {user?.uid && ( */}
+          {user?.uid && (
             <>
               <li>
                 <Link
@@ -67,8 +67,8 @@ const Header = () => {
                   Add Services
                 </Link>
               </li>
-            </>s
-          {/* // )} */}
+            </>
+          )}
           <li>
             <Link
               to="/blog"
@@ -112,7 +112,9 @@ const Header = () => {
           )}
           <li>
             <img
-              src="https://png.pngtree.com/png-vector/20220817/ourmid/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png"
+              src={
+                user?.photoURL
+              }
               alt=""
               title={user?.displayName}
               className="w-12 h-12 rounded-full cursor-pointer"

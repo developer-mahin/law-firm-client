@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import BigSpinner from "../../../components/BigSpinner";
 import SingleProfileCard from "./SingleProfileCard";
 
 const Profile = () => {
-  const { data: profiles = [] } = useQuery({
+  const { data: profiles = [], isLoading } = useQuery({
     queryKey: ["allTeamMember"],
     queryFn: async () => {
       const res = await fetch("https://law-firm-server.vercel.app/profile");
@@ -11,6 +12,11 @@ const Profile = () => {
       return data;
     },
   });
+
+
+  if(isLoading){
+    return <BigSpinner></BigSpinner>
+  }
 
   return (
     <div className="container mx-auto px-3 lg:py-20 py-6">

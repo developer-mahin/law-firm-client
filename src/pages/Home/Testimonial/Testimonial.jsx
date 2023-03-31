@@ -49,7 +49,7 @@ const Testimonial = () => {
   ];
 
   return (
-    <div>
+    <div className="container mx-auto lg:px-3">
       <div className="text-center">
         <div className="">
           <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-400">

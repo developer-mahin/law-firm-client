@@ -53,16 +53,16 @@ const router = createBrowserRouter([
             },
             {
                 path: '/add_services',
-                // element: <PrivateRouter><AddService></AddService></PrivateRouter>
-                element: <AddService></AddService>
+                element: <PrivateRouter><AddService></AddService></PrivateRouter>
+                // element: <AddService></AddService>
             },
             {
                 path: '/add_review/:id',
                 loader: ({ params }) => {
                     return fetch(`https://law-firm-server.vercel.app/allServices/${params.id}`)
                 },
-                // element: <PrivateRouter><Reviews></Reviews></PrivateRouter>
-                element: <Reviews></Reviews>
+                element: <PrivateRouter><Reviews></Reviews></PrivateRouter>
+                // element: <Reviews></Reviews>
             },
             {
                 path: "/blog",
@@ -70,7 +70,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/profile_details/:id",
-                element: <ProfileDetails></ProfileDetails>,
+                element: <PrivateRouter><ProfileDetails></ProfileDetails></PrivateRouter>,
                 loader: ({ params }) => {
                     return fetch(`https://law-firm-server.vercel.app/profile_details/${params.id}`)
                 }

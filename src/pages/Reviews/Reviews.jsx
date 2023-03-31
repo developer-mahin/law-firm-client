@@ -8,20 +8,19 @@ import PublicReview from "../Shared/PublicReview/PublicReview";
 const Reviews = () => {
   const { user } = useContext(AuthContext);
   const service = useLoaderData().data;
-  useTitle("Add Review")
+  useTitle("Add Review");
   const [reviews, setReviews] = useState([]);
   const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
   const { title, _id } = service;
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
 
   const handlePostReview = (event) => {
-
+    setLoading(true);
     event.preventDefault();
     const form = event.target;
     const textArea = form.review.value;
-    const date = new Date().toString().slice(0, 21)
-
+    const date = new Date().toString().slice(0, 21);
 
     const reviewInfo = {
       name: user?.displayName,
@@ -30,7 +29,7 @@ const Reviews = () => {
       review: textArea,
       productId: _id,
       serviceTitle: title,
-      time: date
+      time: date,
     };
 
     fetch("https://law-firm-server.vercel.app/review", {
@@ -43,10 +42,15 @@ const Reviews = () => {
       .then((res) => res.json())
       .then((data) => {
         toast.success("Review Added Successfully");
-        navigate(`/services/${_id}`)
+        navigate(`/services/${_id}`);
         forceUpdate();
+        form.reset();
+        setLoading(false);
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        setLoading(false);
       });
-    
   };
 
   useEffect(() => {
@@ -59,14 +63,14 @@ const Reviews = () => {
 
   return (
     <div className="container mx-auto py-6">
-        <div className="text-center py-8">
-          <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-400">
-            ADD REVIEW
-          </p>
-          <h2 className="text-3xl  font-bold uppercase">
-            Please Add your review
-          </h2>
-        </div>
+      <div className="text-center py-8">
+        <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-400">
+          ADD REVIEW
+        </p>
+        <h2 className="text-3xl  font-bold uppercase">
+          Please Add your review
+        </h2>
+      </div>
       <form onSubmit={handlePostReview}>
         <textarea
           name="review"
@@ -81,7 +85,7 @@ const Reviews = () => {
           className="bg-cyan-400 hover:bg-cyan-500 rounded-full px-8 py-2 font-semibold"
           type="submit"
         >
-          Review
+          {loading ? "Loading..." : "Review"}
         </button>
       </form>
       <div>
