@@ -19,7 +19,7 @@ const AllMyReview = ({
         </>
       ) : (
         <>
-          <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100 border shadow">
+          <div className="lg:px-10 px-3 lg:py-12 py-4 my-12 bg-sky-300/30 rounded-md xl:skew-x-[-12deg]">
             <div className="flex justify-between p-4">
               <div className="flex space-x-4">
                 <div>
